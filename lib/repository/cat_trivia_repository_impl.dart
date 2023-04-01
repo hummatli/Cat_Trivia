@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:hive/hive.dart';
 import '../models/cat_fact.dart';
 import '../services/cat_fact_service.dart';
@@ -7,6 +6,7 @@ import 'cat_trivia_repository.dart';
 class CatTriviaRepositoryImpl implements CatTriviaRepository {
   final CatFactService catFactService;
   final String _hiveBoxName = 'catFacts';
+  final String _catImageUrl = 'https://cataas.com/cat';
 
   CatTriviaRepositoryImpl({required this.catFactService});
 
@@ -18,7 +18,7 @@ class CatTriviaRepositoryImpl implements CatTriviaRepository {
 
   @override
   Future<String> getRandomCatImage() async {
-    return 'https://cataas.com/cat';
+    return '$_catImageUrl?time=${DateTime.now().millisecondsSinceEpoch}'; // Append cache-busting query parameter
   }
 
   @override

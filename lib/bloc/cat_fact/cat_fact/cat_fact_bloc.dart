@@ -13,11 +13,7 @@ class CatFactBloc extends Bloc<CatFactEvent, CatFactState> {
   }
 
   Future<void> _onCatFactRequested(CatFactRequested event, Emitter<CatFactState> emit) async {
-    print("Reques _onCatFactRequested 0");
-
     emit(CatFactLoadInProgress());
-
-    print("Reques _onCatFactRequested");
     try {
       final CatFact catFact = await catTriviaRepository.getRandomCatFact();
       final String catImageUrl = await catTriviaRepository.getRandomCatImage();

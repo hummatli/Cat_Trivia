@@ -1,5 +1,6 @@
 import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_bloc.dart';
 import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_event.dart';
+import 'package:cat_trivia/screens/error_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,9 +18,12 @@ class AppRouter {
         GoRoute(
           path: '/',
           pageBuilder: (context, state) {
-            final catFactBloc = CatFactBloc(catTriviaRepository: catTriviaRepository);
-            catFactBloc.add(CatFactRequested()); // Add the initial CatFactRequested event
-            return MaterialPage(
+            final catFactBloc =
+                CatFactBloc(catTriviaRepository: catTriviaRepository);
+            catFactBloc.add(
+                CatFactRequested()); // Add the initial CatFactRequested event
+            return MaterialPage<void>(
+              key: state.pageKey,
               child: BlocProvider.value(
                 value: catFactBloc,
                 child: MainScreen(),
@@ -29,11 +33,16 @@ class AppRouter {
         ),
         GoRoute(
           path: '/fact-history',
-          pageBuilder: (context, state) => MaterialPage(
+          pageBuilder: (context, state) => MaterialPage<void>(
+            key: state.pageKey,
             child: FactHistoryScreen(catTriviaRepository: catTriviaRepository),
           ),
         ),
       ],
+        errorPageBuilder: (context, state) => MaterialPage<void>(
+          key: state.pageKey,
+          child: ErrorPage(error: state.error),
+        )
     );
   }
 }

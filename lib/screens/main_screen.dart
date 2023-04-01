@@ -1,6 +1,8 @@
 import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_bloc.dart';
 import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_event.dart';
 import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_state.dart';
+import 'package:cat_trivia/screens/error_page.dart';
+import 'package:cat_trivia/screens/fact_history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -28,10 +30,6 @@ class MainScreen extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is CatFactLoadSuccess) {
-            print("State image = ${state.catImageUrl}");
-            final catImageUrl =
-                '${state.catImageUrl}?time=${DateTime.now().millisecondsSinceEpoch}'; // Append cache-busting query parameter
-
             return SingleChildScrollView(
               child: Center(
                 child: Column(
@@ -41,15 +39,16 @@ class MainScreen extends StatelessWidget {
                     Container(
                       width: 200,
                       height: 200,
-                      child: Image.network(catImageUrl),
+                      child: Image.network(state.catImageUrl),
                     ),
                     ElevatedButton(
-                      onPressed: () => BlocProvider.of<CatFactBloc>(context)
-                          .add(CatFactRequested()),
+                      onPressed: () =>
+                          BlocProvider.of<CatFactBloc>(context)
+                              .add(CatFactRequested()),
                       child: const Text('Another fact!'),
                     ),
                     ElevatedButton(
-                      onPressed: () => goRouter.go('/fact-history'),
+                      onPressed: () => goRouter.push('/fact-history'),
                       child: const Text('Fact History'),
                     ),
                   ],
@@ -61,8 +60,9 @@ class MainScreen extends StatelessWidget {
           if (state is CatFactLoadFailure) {
             return Center(
               child: ElevatedButton(
-                onPressed: () => BlocProvider.of<CatFactBloc>(context)
-                    .add(CatFactRequested()),
+                onPressed: () =>
+                    BlocProvider.of<CatFactBloc>(context)
+                        .add(CatFactRequested()),
                 child: const Text('Retry'),
               ),
             );
