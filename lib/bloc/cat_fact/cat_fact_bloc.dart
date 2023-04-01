@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_event.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_state.dart';
+import 'package:cat_trivia/bloc/cat_fact/cat_fact_event.dart';
+import 'package:cat_trivia/bloc/cat_fact/cat_fact_state.dart';
 import 'package:cat_trivia/models/cat_fact.dart';
 import 'package:cat_trivia/repository/cat_trivia_repository.dart';
 

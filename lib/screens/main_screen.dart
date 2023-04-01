@@ -1,8 +1,6 @@
-import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_bloc.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_event.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_state.dart';
-import 'package:cat_trivia/screens/error_page.dart';
-import 'package:cat_trivia/screens/fact_history_screen.dart';
+import 'package:cat_trivia/bloc/cat_fact/cat_fact_bloc.dart';
+import 'package:cat_trivia/bloc/cat_fact/cat_fact_event.dart';
+import 'package:cat_trivia/bloc/cat_fact/cat_fact_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -12,8 +10,6 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final goRouter = GoRouter.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cat Trivia'),
@@ -48,7 +44,7 @@ class MainScreen extends StatelessWidget {
                       child: const Text('Another fact!'),
                     ),
                     ElevatedButton(
-                      onPressed: () => goRouter.push('/fact-history'),
+                      onPressed: () => GoRouter.of(context).push('/fact-history'),
                       child: const Text('Fact History'),
                     ),
                   ],

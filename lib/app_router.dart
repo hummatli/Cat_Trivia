@@ -1,5 +1,6 @@
-import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_bloc.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact/cat_fact_event.dart';
+import 'package:cat_trivia/bloc/cat_fact/cat_fact_bloc.dart';
+import 'package:cat_trivia/bloc/cat_fact/cat_fact_event.dart';
+import 'package:cat_trivia/bloc/fact_history_cubit/fact_history_cubit.dart';
 import 'package:cat_trivia/screens/error_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,35 +15,36 @@ class AppRouter {
 
   AppRouter({required this.catTriviaRepository}) {
     goRouter = GoRouter(
-      routes: [
-        GoRoute(
-          path: '/',
-          pageBuilder: (context, state) {
-            final catFactBloc =
-                CatFactBloc(catTriviaRepository: catTriviaRepository);
-            catFactBloc.add(
-                CatFactRequested()); // Add the initial CatFactRequested event
-            return MaterialPage<void>(
-              key: state.pageKey,
-              child: BlocProvider.value(
-                value: catFactBloc,
-                child: MainScreen(),
-              ),
-            );
-          },
-        ),
-        GoRoute(
-          path: '/fact-history',
-          pageBuilder: (context, state) => MaterialPage<void>(
-            key: state.pageKey,
-            child: FactHistoryScreen(catTriviaRepository: catTriviaRepository),
+        routes: [
+          GoRoute(
+            path: '/',
+            pageBuilder: (context, state) {
+              final catFactBloc =
+                  CatFactBloc(catTriviaRepository: catTriviaRepository);
+              catFactBloc.add(
+                  CatFactRequested()); // Add the initial CatFactRequested event
+              return MaterialPage<void>(
+                key: state.pageKey,
+                child: BlocProvider.value(
+                  value: catFactBloc,
+                  child: const MainScreen(),
+                ),
+              );
+            },
           ),
-        ),
-      ],
+          GoRoute(
+            path: '/fact-history',
+            pageBuilder: (context, state) => MaterialPage<void>(
+              key: state.pageKey,
+              child: BlocProvider(
+                  create: (_) => FactHistoryCubit(catTriviaRepository),
+                  child: const FactHistoryScreen()),
+            ),
+          ),
+        ],
         errorPageBuilder: (context, state) => MaterialPage<void>(
-          key: state.pageKey,
-          child: ErrorPage(error: state.error),
-        )
-    );
+              key: state.pageKey,
+              child: ErrorPage(error: state.error),
+            ));
   }
 }
