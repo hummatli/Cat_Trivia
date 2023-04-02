@@ -11,6 +11,6 @@ abstract class CatFactService {
     return _CatFactService(dio);
   }
 
-  @GET("/facts/random?animal_type=cat&amount=1")
+  @GET("/facts/random?animal_type=cat&amount=10")
   Future<List<CatFact>> getRandomCatFacts();
 }
