@@ -1,10 +1,10 @@
-import 'package:cat_trivia/bloc/fact_history_cubit/fact_history_state.dart';
+import 'package:cat_trivia/features/fact_history/bloc/fact_history_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/fact_history_cubit/fact_history_cubit.dart';
+import 'bloc/fact_history_cubit.dart';
 
-class FactHistoryScreen extends StatelessWidget {
-  const FactHistoryScreen({Key? key}) : super(key: key);
+class FactHistoryPage extends StatelessWidget {
+  const FactHistoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

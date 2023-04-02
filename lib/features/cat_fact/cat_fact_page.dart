@@ -1,12 +1,12 @@
-import 'package:cat_trivia/bloc/cat_fact/cat_fact_bloc.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact_event.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact_state.dart';
+import 'package:cat_trivia/features/cat_fact/bloc/cat_fact_bloc.dart';
+import 'package:cat_trivia/features/cat_fact/bloc/cat_fact_event.dart';
+import 'package:cat_trivia/features/cat_fact/bloc/cat_fact_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class CatFactPage extends StatelessWidget {
+  const CatFactPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

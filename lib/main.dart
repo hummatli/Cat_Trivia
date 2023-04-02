@@ -1,13 +1,11 @@
+import 'package:cat_trivia/api/cat_fact_service.dart';
+import 'package:cat_trivia/data/cat_trivia_repository_impl.dart';
 import 'package:cat_trivia/models/cat_fact.dart';
-import 'package:cat_trivia/repository/cat_trivia_repository_impl.dart';
-import 'package:cat_trivia/services/cat_fact_service.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'app_router.dart';
-import 'repository/cat_trivia_repository.dart';
 
 void main() {
   Hive.initFlutter();

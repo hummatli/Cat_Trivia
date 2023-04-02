@@ -1,6 +1,6 @@
+import 'package:cat_trivia/api/cat_fact_service.dart';
+import 'package:cat_trivia/models/cat_fact.dart';
 import 'package:hive/hive.dart';
-import '../models/cat_fact.dart';
-import '../services/cat_fact_service.dart';
 import 'cat_trivia_repository.dart';
 
 class CatTriviaRepositoryImpl implements CatTriviaRepository {

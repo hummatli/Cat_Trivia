@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact_event.dart';
-import 'package:cat_trivia/bloc/cat_fact/cat_fact_state.dart';
+import 'package:cat_trivia/data/cat_trivia_repository.dart';
+import 'package:cat_trivia/features/cat_fact/bloc/cat_fact_event.dart';
+import 'package:cat_trivia/features/cat_fact/bloc/cat_fact_state.dart';
 import 'package:cat_trivia/models/cat_fact.dart';
-import 'package:cat_trivia/repository/cat_trivia_repository.dart';
 
 class CatFactBloc extends Bloc<CatFactEvent, CatFactState> {
   final CatTriviaRepository catTriviaRepository;
