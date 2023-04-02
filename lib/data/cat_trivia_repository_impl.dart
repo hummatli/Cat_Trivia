@@ -13,7 +13,7 @@ class CatTriviaRepositoryImpl implements CatTriviaRepository {
   @override
   Future<CatFact> getRandomCatFact() async {
     final catFacts = await catFactService.getRandomCatFacts();
-    return catFacts[_randomIndex(catFacts.length)];
+    return catFacts[0];
   }
 
   @override
@@ -32,6 +32,4 @@ class CatTriviaRepositoryImpl implements CatTriviaRepository {
     final box = await Hive.openBox<CatFact>(_hiveBoxName);
     return box.values.toList();
   }
-
-  int _randomIndex(int max) => DateTime.now().millisecondsSinceEpoch % max;
 }

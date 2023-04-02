@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:cat_trivia/data/cat_trivia_repository.dart';
+import 'package:cat_trivia/data/cache_repository.dart';
 import 'package:cat_trivia/features/fact_history/bloc/fact_history_state.dart';
 import 'package:cat_trivia/models/cat_fact.dart';
 
 class FactHistoryCubit extends Cubit<FactHistoryState> {
-  final CatTriviaRepository _catTriviaRepository;
+  final CacheRepository _cacheRepository;
 
-  FactHistoryCubit(this._catTriviaRepository) : super(FactHistoryInitial()) {
+  FactHistoryCubit(this._cacheRepository) : super(FactHistoryInitial()) {
     loadFactHistory();
   }
 
@@ -14,7 +14,7 @@ class FactHistoryCubit extends Cubit<FactHistoryState> {
     emit(FactHistoryLoadInProgress());
     try {
       final List<CatFact> factHistory =
-          await _catTriviaRepository.getSavedCatFacts();
+          await _cacheRepository.getSavedCatFacts();
       emit(FactHistoryLoadSuccess(factHistory));
     } catch (_) {
       emit(FactHistoryLoadFailure());
