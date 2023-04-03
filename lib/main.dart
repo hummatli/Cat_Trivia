@@ -6,22 +6,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.setupDi();
 
-  runApp(MyApp(
-    appRouter: AppRouter(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final AppRouter appRouter;
-
-  const MyApp({Key? key, required this.appRouter}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cat Trivia',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: appRouter,
+      home: AppRouter(),
     );
   }
 }

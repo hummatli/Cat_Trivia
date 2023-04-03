@@ -17,18 +17,21 @@ class CatFactAdapter extends TypeAdapter<CatFact> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CatFact(
-      text: fields[0] as String,
-      createdAt: fields[1] as DateTime,
+      id: fields[0] as String,
+      text: fields[1] as String,
+      createdAt: fields[2] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, CatFact obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.text)
+      ..write(obj.id)
       ..writeByte(1)
+      ..write(obj.text)
+      ..writeByte(2)
       ..write(obj.createdAt);
   }
 
@@ -48,11 +51,13 @@ class CatFactAdapter extends TypeAdapter<CatFact> {
 // **************************************************************************
 
 CatFact _$CatFactFromJson(Map<String, dynamic> json) => CatFact(
+      id: json['_id'] as String,
       text: json['text'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$CatFactToJson(CatFact instance) => <String, dynamic>{
+      '_id': instance.id,
       'text': instance.text,
       'createdAt': instance.createdAt.toIso8601String(),
     };
