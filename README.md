@@ -3,10 +3,10 @@
 A sample app to demonstrate a Flutter app built with the follwoing tools and archictecture.
 
 #### Packages: 
-Bloc, Retrofit, Hive, GetIt, Shimmer, intl and etc. 
+**Bloc, Retrofit, Hive, GetIt, Shimmer, intl** and etc. 
 
 #### Structure:
-It was designed clean architecture in mind, has feature-based files structure.
+It was designed **Clean Architecture** in mind, has **feature-based files structure**.
 
 
 #### Demo:
