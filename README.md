@@ -11,3 +11,4 @@ It was designed clean architecture in mind, has feature-based files structure.
 
 #### Demo:
 
+https://user-images.githubusercontent.com/11817431/229433875-dbd3cb44-ffb2-49fa-bfb1-b9263edb30c9.mp4
