@@ -1,32 +1,27 @@
-import 'package:cat_trivia/di/injection_container.dart';
+import 'package:cat_trivia/di/di_container.dart' as di;
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
 import 'app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupInjection();
+  await di.setupDi();
 
-  final appRouter = AppRouter();
-
-  runApp(
-    MyApp(goRouter: appRouter.goRouter),
-  );
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  final GoRouter goRouter;
+  final AppRouter appRouter;
 
-  MyApp({Key? key, required this.goRouter}) : super(key: key);
+  const MyApp({Key? key, required this.appRouter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerDelegate: goRouter.routerDelegate,
-      routeInformationParser: goRouter.routeInformationParser,
+    return MaterialApp(
       title: 'Cat Trivia',
       theme: ThemeData(primarySwatch: Colors.blue),
+      home: appRouter,
     );
   }
 }

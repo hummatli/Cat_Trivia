@@ -1,13 +1,14 @@
 import 'package:cat_trivia/data/cache_repository.dart';
 import 'package:cat_trivia/data/cat_trivia_repository.dart';
-import 'package:cat_trivia/di/injection_container.dart';
+import 'package:cat_trivia/di/di_container.dart';
 import 'package:cat_trivia/features/cat_fact/bloc/cat_fact_bloc.dart';
 import 'package:cat_trivia/features/cat_fact/bloc/cat_fact_event.dart';
 import 'package:cat_trivia/features/cat_fact/bloc/cat_fact_state.dart';
+import 'package:cat_trivia/features/cat_fact/widgets/cat_fact_shimmer_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:cat_trivia/extensions/datetime_extensions.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CatFactPage extends StatelessWidget {
   final CatFactBloc catFactBloc;
@@ -19,7 +20,6 @@ class CatFactPage extends StatelessWidget {
         super(key: key) {
     _loadInitialCatFact();
     print("CatFactPage constructor called");
-
   }
 
   void _loadInitialCatFact() {
@@ -63,14 +63,11 @@ class CatFactPage extends StatelessWidget {
                                     children: [
                                       SizedBox(
                                           width: constraints.maxWidth,
-                                          // Match the screen width
                                           height: 300,
                                           child: FadeInImage.assetNetwork(
                                             placeholder:
                                                 'assets/images/placeholder.jpg',
-                                            // Path to your placeholder image
                                             image: state.catImageUrl,
-                                            // The network image URL
                                             fit: BoxFit.fitHeight,
                                           )),
                                       const SizedBox(
@@ -108,7 +105,7 @@ class CatFactPage extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return const Center(child: CircularProgressIndicator());
+                      return CatFactShimmerSkeleton();
                     }
                   }),
                 ),
@@ -126,7 +123,7 @@ class CatFactPage extends StatelessWidget {
                       const SizedBox(width: 32.0),
                       ElevatedButton(
                         onPressed: () =>
-                            GoRouter.of(context).push('/fact-history'),
+                            Navigator.pushNamed(context, '/fact-history'),
                         child: const Text('Fact History'),
                       ),
                     ],

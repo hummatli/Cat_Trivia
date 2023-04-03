@@ -10,7 +10,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 final getIt = GetIt.instance;
 
-Future<void> setupInjection() async {
+Future<void> setupDi() async {
   // Initialize Hive
   await Hive.initFlutter();
   Hive.registerAdapter<CatFact>(CatFactAdapter());

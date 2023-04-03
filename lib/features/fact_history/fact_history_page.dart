@@ -1,5 +1,5 @@
 import 'package:cat_trivia/data/cache_repository.dart';
-import 'package:cat_trivia/di/injection_container.dart';
+import 'package:cat_trivia/di/di_container.dart';
 import 'package:cat_trivia/extensions/datetime_extensions.dart';
 import 'package:cat_trivia/features/fact_history/bloc/fact_history_state.dart';
 import 'package:flutter/material.dart';
